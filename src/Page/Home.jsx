@@ -17,10 +17,13 @@ export default function Home() {
     setError,
     clearErrors,
   } = useForm();
-
   const clientId = '430767610295-car63jkfq7vumfs469a51k7bjmnpcp0j.apps.googleusercontent.com'
   console.log(watch("inputHello"));
+  const handleClick = (e) => {
+    e.preventDefault();
+    window.open('http://localhost:4000/auth/google','_self')
 
+  }
   const handleLogin = (googleData) => {
     console.log("login",googleData);
     // axios.post('http://localhost:4000/user/login',{tokenId: googleData.tokenId}).then(res => {
@@ -30,6 +33,7 @@ export default function Home() {
   const handleFailure = (result) => {
     console.log("fail",result);
   };
+  
   return (
     <div>
       <form class="form">
@@ -61,9 +65,8 @@ export default function Home() {
         {/* <span className="err">
           {errors.UserName && "*" + errors.UserName.message}
         </span> */}
+        <button onClick={handleClick}>Click</button>
         <GoogleLogin
-         onSuccess={handleLogin}
-         onError={handleFailure}
         ></GoogleLogin>
         {/* <button
           onClick={(e) => {
